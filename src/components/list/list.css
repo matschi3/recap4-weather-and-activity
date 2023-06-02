@@ -1,0 +1,8 @@
+.listSection {
+}
+
+.listSection__article {
+  border: 1px black solid;
+  background-color: lightgrey;
+  color: white;
+}

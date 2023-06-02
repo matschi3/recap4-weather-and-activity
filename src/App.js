@@ -2,6 +2,7 @@
 import { useState } from "react";
 import "./App.css";
 import ActivityForm from "./components/activityForm/ActivityForm";
+import List from "./components/list/List";
 import { uid } from "uid";
 
 function App() {
@@ -22,7 +23,14 @@ function App() {
     console.log(activities);
   }
 
-  return <ActivityForm onAddActivity={handleAddActivity} />;
+  return (
+    <>
+      <fieldset className="activityForm-fieldset">
+        <List activities={activities} />
+        <ActivityForm onAddActivity={handleAddActivity} />
+      </fieldset>
+    </>
+  );
 }
 
 export default App;
