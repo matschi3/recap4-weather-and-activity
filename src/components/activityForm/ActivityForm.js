@@ -1,6 +1,6 @@
 import "./activityForm.css";
 
-export default function ActivityForm() {
+export default function ActivityForm({ onAddActivity }) {
   return (
     <>
       <form>
