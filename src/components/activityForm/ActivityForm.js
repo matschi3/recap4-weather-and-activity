@@ -11,20 +11,18 @@ export default function ActivityForm({ onAddActivity }) {
   }
   return (
     <>
-      <form onSubmit={handleFormSubmit}>
-        <fieldset className="activityForm-fieldset">
-          <p>Add new Activity:</p>
-          <label htmlFor="name">
-            Name: <input type="text" name="name" id="name" />
-          </label>
+      <form className="activityForm" onSubmit={handleFormSubmit}>
+        <p>Add new Activity:</p>
+        <label htmlFor="name">
+          Name: <input type="text" name="name" id="name" />
+        </label>
 
-          <label htmlFor="goodWeather">
-            Good-weather activity:{" "}
-            <input type="checkbox" name="goodWeather" id="goodWeather" />
-          </label>
+        <label htmlFor="goodWeather">
+          Good-weather activity:{" "}
+          <input type="checkbox" name="goodWeather" id="goodWeather" />
+        </label>
 
-          <button type="submit">Submit</button>
-        </fieldset>
+        <button type="submit">Submit</button>
       </form>
     </>
   );

@@ -2,10 +2,13 @@
 import { useState } from "react";
 import "./App.css";
 import ActivityForm from "./components/activityForm/ActivityForm";
+import List from "./components/list/List";
 import { uid } from "uid";
 
 function App() {
   const [activities, setActivities] = useState([]);
+
+  const isGoodWeather = true;
 
   function handleAddActivity(data) {
     const newActivity = {
@@ -22,7 +25,19 @@ function App() {
     console.log(activities);
   }
 
-  return <ActivityForm onAddActivity={handleAddActivity} />;
+  return (
+    <>
+      <fieldset className="activityForm-fieldset">
+        {isGoodWeather === true ? (
+          <p className="headline">Wetter ist jut!</p>
+        ) : (
+          <p className="headline">Wetter ist bad!</p>
+        )}
+        <List activities={activities} isGoodWeather={isGoodWeather} />
+        <ActivityForm onAddActivity={handleAddActivity} />
+      </fieldset>
+    </>
+  );
 }
 
 export default App;
