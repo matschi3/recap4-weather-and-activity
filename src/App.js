@@ -10,6 +10,14 @@ function App() {
 
   const isGoodWeather = true;
 
+  async function fetchData(){
+    const response = await fetch(
+      "https://example-apis.vercel.app/api/weather"
+    )
+    const data= await response.json();
+    console.log(data)
+  }
+
   function handleAddActivity(data) {
     const newActivity = {
       id: uid(),
