@@ -8,7 +8,7 @@ import { uid } from "uid";
 function App() {
   const [activities, setActivities] = useState([]);
 
-  const isGoodWeather = false;
+  const isGoodWeather = true;
 
   function handleAddActivity(data) {
     const newActivity = {
@@ -28,6 +28,11 @@ function App() {
   return (
     <>
       <fieldset className="activityForm-fieldset">
+        {isGoodWeather === true ? (
+          <p className="headline">Wetter ist jut!</p>
+        ) : (
+          <p className="headline">Wetter ist bad!</p>
+        )}
         <List activities={activities} isGoodWeather={isGoodWeather} />
         <ActivityForm onAddActivity={handleAddActivity} />
       </fieldset>
