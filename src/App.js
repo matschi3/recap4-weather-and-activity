@@ -1,5 +1,5 @@
 //import logo from './logo.svg';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import ActivityForm from "./components/activityForm/ActivityForm";
 import List from "./components/list/List";
@@ -7,16 +7,24 @@ import { uid } from "uid";
 
 function App() {
   const [activities, setActivities] = useState([]);
+const [weather, setWeather]= useState(null)
 
-  const isGoodWeather = true;
-
+useEffect(() => {
   async function fetchData(){
+    try{
     const response = await fetch(
-      "https://example-apis.vercel.app/api/weather"
-    )
-    const data= await response.json();
-    console.log(data)
-  }
+      "https://example-apis.vercel.app/api/weather")
+      if(response.ok){
+        const data= await response.json();
+        setWeather(data)
+        console.log("It works")
+      } else{ console.log("bad response")}
+  } catch (error) {
+    console.error("Error", error)
+  }}
+  fetchData()
+},[])
+
 
   function handleAddActivity(data) {
     const newActivity = {
@@ -30,18 +38,18 @@ function App() {
     } else {
       setActivities((activities) => [...activities, newActivity]);
     }
-    console.log(activities);
   }
 
   return (
     <>
       <fieldset className="activityForm-fieldset">
-        {isGoodWeather === true ? (
+       {weather === null ? <p>Wetter is jut!</p>:
+        weather.isGoodWeather === true ? (
           <p className="headline">Wetter ist jut!</p>
         ) : (
           <p className="headline">Wetter ist bad!</p>
         )}
-        <List activities={activities} isGoodWeather={isGoodWeather} />
+        <List activities={activities} weather={weather} />
         <ActivityForm onAddActivity={handleAddActivity} />
       </fieldset>
     </>
