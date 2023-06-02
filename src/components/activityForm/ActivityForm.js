@@ -1,9 +1,10 @@
 import "./activityForm.css";
 
-export default function ActivityForm({ onAddActivity }) {
+export default function ActivityForm({onAddActivity}) {
+
   return (
     <>
-      <form>
+      <form onSubmit={onAddActivity} >
         <fieldset className="activityForm-fieldset">
           <p>Add new Activity:</p>
           <label htmlFor="name">
