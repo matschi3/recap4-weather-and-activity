@@ -8,6 +8,8 @@ import { uid } from "uid";
 function App() {
   const [activities, setActivities] = useState([]);
 
+  const isGoodWeather = false;
+
   function handleAddActivity(data) {
     const newActivity = {
       id: uid(),
@@ -26,7 +28,7 @@ function App() {
   return (
     <>
       <fieldset className="activityForm-fieldset">
-        <List activities={activities} />
+        <List activities={activities} isGoodWeather={isGoodWeather} />
         <ActivityForm onAddActivity={handleAddActivity} />
       </fieldset>
     </>
