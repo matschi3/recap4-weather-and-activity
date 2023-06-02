@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+//import logo from './logo.svg';
+import { useState } from "react";
+import "./App.css";
+import ActivityForm from "./components/activityForm/ActivityForm";
+import { uid } from "uid";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [activities, setActivities] = useState([]);
+
+  function handleAddActivity(data) {
+    const newActivity = {
+      id: uid(),
+      name: String(data.name),
+      goodWeather: Boolean(data.goodWeather),
+    };
+
+    if (!activities) {
+      setActivities([newActivity]);
+    } else {
+      setActivities((activities) => [...activities, newActivity]);
+    }
+    console.log(activities);
+  }
+
+  return <ActivityForm onAddActivity={handleAddActivity} />;
 }
 
 export default App;
