@@ -2,30 +2,27 @@
 import { useState } from "react";
 import "./App.css";
 import ActivityForm from "./components/activityForm/ActivityForm";
+import { uid } from "uid";
 
 function App() {
+  const [activities, setActivities] = useState([]);
 
-  const[activities, setActivities]= useState([])
-  function handleAddActivities([activites]){
-   if(!activites){
-    setActivities([newActivity])
-   } else {
-    setActivities((entries)=>[...activities, newActivity])
-   }
-   console.log(activities)
-  }
-  
-  function handleSubmitEvent(event){
-  event.preventDefault()
-  const formData = new FormData(event.target)
-  const data= Object.fromEntries(formData)
-  const newActivity= {name:String(data.name), goodWeather:Boolean(data.goodWeather)}
-  handleAddActivities(newActivity)
-  event.target.reset()
-  event.target.name.focus()
+  function handleAddActivity(data) {
+    const newActivity = {
+      id: uid(),
+      name: String(data.name),
+      goodWeather: Boolean(data.goodWeather),
+    };
+
+    if (!activities) {
+      setActivities([newActivity]);
+    } else {
+      setActivities((activities) => [...activities, newActivity]);
+    }
+    console.log(activities);
   }
 
-  return <ActivityForm onAddActivity={handleSubmitEvent} />;
+  return <ActivityForm onAddActivity={handleAddActivity} />;
 }
 
 export default App;
